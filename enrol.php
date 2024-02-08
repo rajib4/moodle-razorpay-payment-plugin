@@ -89,11 +89,21 @@ if (empty($secretkey) || empty($courseid) || empty($amount) || empty($currency) 
 
 ?>
 
+<style>
+div.txt-center{
+text-align: center!important
+}
+</style>
+
 <?php 
+echo "<div class=txt-center>";
 echo "<h3>$instancename</h3>";
-echo "<p>This course requires a payment.</p>";
-echo "<strong>cost : {$instance->currency} {$cost}</strong>";
-?>
+//echo "<p>This course requires a payment.</p>";
+echo "<p>This course requires a payment for entry.</p>";
+//echo "<p><strong>Cost : {$instance->currency} {$cost}</strong></p>";
+echo "<p><strong>{$instance->currency} {$cost}</strong></p>";
+//echo "</div>";
+//?>
 
 <form id="checkout-selection" action="<?php echo $CFG->wwwroot."/enrol/razorpay/charge.php"; ?>" method="POST">
 <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="<?php echo $data['key'] ?>" data-amount="<?php echo $data['amount'] ?>" data-currency="INR" data-name="<?php echo $data['name'] ?>" data-image="<?php echo $data['image'] ?>" data-description="<?php echo $data['description'] ?>" data-prefill.name="<?php echo $data['prefill']['name'] ?>" data-prefill.email="<?php echo $data['prefill']['email'] ?>" data-notes.shopping_order_id="3456" data-order_id="<?php echo $data['order_id'] ?>" <?php if ($displayCurrency !== 'INR') { ?> data-display_amount="<?php echo $data['display_amount'] ?>" <?php } ?> <?php if ($displayCurrency !== 'INR') { ?> data-display_currency="<?php echo $data['display_currency'] ?>" <?php } ?>>
